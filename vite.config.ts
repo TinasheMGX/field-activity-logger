@@ -2,7 +2,12 @@ import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
-export default defineConfig({
+// Served from https://<user>.github.io/field-activity-logger/ in production,
+// so the build needs that base path; local dev/test stays at root.
+const BASE = "/field-activity-logger/";
+
+export default defineConfig(({ command }) => ({
+  base: command === "build" ? BASE : "/",
   plugins: [
     react(),
     VitePWA({
@@ -17,8 +22,6 @@ export default defineConfig({
         background_color: "#0f172a",
         display: "standalone",
         orientation: "portrait",
-        start_url: "/",
-        scope: "/",
         icons: [
           {
             src: "icon.svg",
@@ -37,4 +40,4 @@ export default defineConfig({
     environment: "node",
     include: ["src/**/*.test.ts"],
   },
-});
+}));
