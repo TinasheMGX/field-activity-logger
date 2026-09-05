@@ -42,13 +42,15 @@ export function SettingsModal({
             <Label>Officer name</Label>
             <TextInput
               value={officer}
+              placeholder="e.g. Tinashe Mariridza"
               onChange={(e) => setOfficer(e.target.value)}
             />
           </label>
           <label className="block">
-            <Label>Branch name</Label>
+            <Label hint="optional">Branch name</Label>
             <TextInput
               value={branch}
+              placeholder="e.g. Digital"
               onChange={(e) => setBranch(e.target.value)}
             />
           </label>

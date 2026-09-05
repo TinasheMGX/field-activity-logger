@@ -39,7 +39,9 @@ export interface Settings {
   branch_name: string;
 }
 
+// Blank by default: a new user must set their own officer name (see the
+// first-run nudge) so no one else's name lands on their export.
 export const DEFAULT_SETTINGS: Settings = {
-  officer_name: "Tinashe Mariridza",
-  branch_name: "Digital",
+  officer_name: "",
+  branch_name: "",
 };

@@ -56,7 +56,9 @@ function SyncPill({ state, onClick }: { state: SyncState; onClick: () => void })
 export default function App() {
   const logs = useStore((s) => s.logs);
   const hydrated = useStore((s) => s.hydrated);
+  const officerName = useStore((s) => s.settings.officer_name);
   const activeLogs = useMemo(() => logs.filter((l) => !l.deleted), [logs]);
+  const needsProfile = hydrated && !officerName.trim();
 
   const [session, setSession] = useState<Session | null | undefined>(undefined);
   const [tab, setTab] = useState<Tab>("log");
@@ -185,11 +187,24 @@ export default function App() {
       </header>
 
       <main className="flex-1 safe-bottom">
+        {needsProfile && (
+          <div className="m-4 mb-0 flex items-center justify-between gap-3 rounded-xl bg-amber-50 px-3 py-2.5 text-sm text-amber-800 ring-1 ring-amber-200">
+            <span>Set your officer name before logging — it appears on every export.</span>
+            <button
+              className="shrink-0 rounded-lg bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white"
+              onClick={() => setSettingsOpen(true)}
+            >
+              Set now
+            </button>
+          </div>
+        )}
         {!hydrated ? (
           <p className="p-8 text-center text-sm text-slate-400">Loading…</p>
         ) : tab === "log" ? (
           <QuickEntryForm
             editing={editing}
+            profileIncomplete={needsProfile}
+            onOpenSettings={() => setSettingsOpen(true)}
             onDone={() => {
               setEditing(null);
               setTab("history");

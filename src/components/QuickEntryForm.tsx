@@ -38,10 +38,14 @@ function fromLog(log: ActivityLog): ActivityInput {
 
 export function QuickEntryForm({
   editing,
+  profileIncomplete = false,
+  onOpenSettings,
   onDone,
   onToast,
 }: {
   editing: ActivityLog | null;
+  profileIncomplete?: boolean;
+  onOpenSettings?: () => void;
   onDone: () => void;
   onToast: (msg: string) => void;
 }) {
@@ -64,6 +68,10 @@ export function QuickEntryForm({
   }
 
   function submit() {
+    if (profileIncomplete) {
+      onOpenSettings?.();
+      return setError("Set your officer name in Settings first.");
+    }
     if (!form.merchant_name.trim()) return setError("Merchant name is required.");
     if (!form.merchant_location.trim())
       return setError("Merchant location is required.");
