@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Field Activity Logger">
+  <rect width="512" height="512" rx="96" fill="#0f766e"/>
+  <rect x="128" y="96" width="256" height="320" rx="28" fill="#ecfeff"/>
+  <rect x="176" y="72" width="160" height="56" rx="20" fill="#115e59"/>
+  <g fill="#0f766e">
+    <rect x="168" y="184" width="176" height="20" rx="10"/>
+    <rect x="168" y="236" width="176" height="20" rx="10"/>
+    <rect x="168" y="288" width="112" height="20" rx="10"/>
+  </g>
+  <path d="M300 320 l24 24 l52 -60" fill="none" stroke="#0f766e" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
