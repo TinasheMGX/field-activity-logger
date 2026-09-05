@@ -37,6 +37,7 @@ export function HistoryView({
 
   const filtered = useMemo(() => {
     return logs.filter((l) => {
+      if (l.deleted) return false;
       if (from && l.activity_date < from) return false;
       if (to && l.activity_date > to) return false;
       if (type !== "All" && l.activity_type !== type) return false;

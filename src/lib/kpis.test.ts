@@ -13,6 +13,7 @@ function log(overrides: Partial<ActivityLog> = {}): ActivityLog {
     customer_issues: "",
     action_taken: "",
     status: "Completed",
+    deleted: false,
     created_at: "",
     updated_at: "",
     ...overrides,

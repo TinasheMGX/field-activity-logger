@@ -26,7 +26,13 @@ function blank(): ActivityInput {
 }
 
 function fromLog(log: ActivityLog): ActivityInput {
-  const { id: _id, created_at: _c, updated_at: _u, ...rest } = log;
+  const {
+    id: _id,
+    deleted: _deleted,
+    created_at: _c,
+    updated_at: _u,
+    ...rest
+  } = log;
   return rest;
 }
 

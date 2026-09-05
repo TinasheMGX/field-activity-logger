@@ -23,12 +23,16 @@ export interface ActivityLog {
   customer_issues: string;
   action_taken: string;
   status: Status;
+  deleted: boolean; // tombstone so deletes propagate through sync
   created_at: string; // ISO timestamp
   updated_at: string; // ISO timestamp
 }
 
-/** Fields the user actually types; the rest are generated. */
-export type ActivityInput = Omit<ActivityLog, "id" | "created_at" | "updated_at">;
+/** Fields the user actually types; the rest are generated/managed. */
+export type ActivityInput = Omit<
+  ActivityLog,
+  "id" | "deleted" | "created_at" | "updated_at"
+>;
 
 export interface Settings {
   officer_name: string;
